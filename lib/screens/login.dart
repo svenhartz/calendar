@@ -4,7 +4,7 @@ import 'package:calendar_app/constants.dart';
 import 'calendar_app.dart';
 
 var users = {
-  'mail@svenhartz.com': '123',
+  'mail@sven.com': '123',
 };
 
 class Login extends StatefulWidget {
