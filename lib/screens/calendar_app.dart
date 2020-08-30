@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:provider/provider.dart';
+import 'package:calendar_app/data.dart';
+
+
 
 class CalendarApp extends StatefulWidget {
   CalendarApp({Key key, this.title}) : super(key: key);
@@ -28,7 +32,7 @@ class _CalendarApp extends State<CalendarApp> with TickerProviderStateMixin {
     super.initState();
     final _selectedDay = DateTime.now();
 
-    _events = {
+    /*_events = {
       _selectedDay.subtract(Duration(days: 30)): [
         'Event A0',
         'Event B0',
@@ -79,6 +83,13 @@ class _CalendarApp extends State<CalendarApp> with TickerProviderStateMixin {
         'Event A14',
         'Event B14',
         'Event C14'
+      ],
+    };*/
+    _events = {
+      DateTime.now().subtract(Duration(days: 30)): [
+        'Event A0',
+        'Event B0',
+        'Event C0'
       ],
     };
 
@@ -155,7 +166,7 @@ class _CalendarApp extends State<CalendarApp> with TickerProviderStateMixin {
       children: [
         Container(
           child: Text(
-            'Calendar',
+            'CALENDAR',
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w300,
@@ -169,15 +180,14 @@ class _CalendarApp extends State<CalendarApp> with TickerProviderStateMixin {
             top: 40,
           ),
         ),
-        Expanded(
-          child: Container(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              widget.title,
-              style: TextStyle(fontWeight: FontWeight.w500),
-            ),
+        Container(
+          padding: EdgeInsets.all(16.0),
+          child: Text(
+            widget.title,
+            style: TextStyle(fontWeight: FontWeight.w500),
           ),
         ),
+        Spacer(),
         Row(
           children: [
           FlatButton.icon(
@@ -198,7 +208,8 @@ class _CalendarApp extends State<CalendarApp> with TickerProviderStateMixin {
   Widget _buildTableCalendar() {
     return TableCalendar(
       calendarController: _calendarController,
-      events: _events,
+      //events: _events,
+      events: Provider.of<Data>(context).events,
       holidays: _holidays,
       initialCalendarFormat: CalendarFormat.month,
       startingDayOfWeek: StartingDayOfWeek.monday,
