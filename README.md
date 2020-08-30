@@ -22,11 +22,11 @@ The recommended way to build this project is via Android Studio
    5. Click Restart when prompted.
 
 3. Start Android Studio and choose 'Project from version control' 
-4. Paste github url into URL: https://github.com/svenhartz/calendar.git and click 'clone'
-5. Click 'cancel' if you're gonna be asked if you want to create an Android Studio Project
+4. Paste github url into URL form and click 'clone' ( github URL: https://github.com/svenhartz/calendar.git)
+5. Click 'Cancel' if you're getting asked if you want to create an Android Studio Project
 6. Click Open and select the new folder called 'calendar'
 7. Click 'Pub get' to get all dependencies 
-8. Now you can build the project on your Android phone if you've connected it via USB cable on your computer or your use the Android Emulator. 
+8. You can now build the project on your Android phone (if you've connected it via USB cable on your computer) or you use the Android Emulator. 
 To setup the Android Emulator read: https://developer.android.com/studio/run/managing-avds   
 
 
