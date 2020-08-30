@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar_app/constants.dart';
-import 'calendar_app.dart';
+import 'home.dart';
 
 var users = {
   'mail@sven.com': '123',
@@ -37,13 +37,7 @@ class _Login extends State<Login> {
               child: Center(
                 child: Text(
                   'CALENDAR',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 40.0,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w100,
-                    letterSpacing: 4,
-                  ),
+                  style: kHeadlineLogin,
                 ),
               ),
             ),
@@ -72,7 +66,7 @@ class _Login extends State<Login> {
                 ),
                 kVerticalSpacer24,
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
@@ -87,31 +81,23 @@ class _Login extends State<Login> {
                         },
                         child: Text(
                           "Log in",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Montserrat',
-                              fontSize: 16.0),
+                          style: kPrimaryButtonText,
                         ),
                       ),
                     ),
                     kHorizontalSpacer16,
-                    Expanded(
-                      child: OutlineButton(
-                        padding: EdgeInsets.all(16.0),
-                        borderSide: BorderSide(color: Colors.black),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4.0),
-                        ),
-                        onPressed: () {
-                          signup(emailController.text, passwordController.text);
-                        },
-                        child: Text(
-                          "Sign up",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: 'Montserrat',
-                              fontSize: 16.0),
-                        ),
+                    OutlineButton(
+                      padding: EdgeInsets.all(16.0),
+                      borderSide: BorderSide(color: Colors.black),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4.0),
+                      ),
+                      onPressed: () {
+                        signup(emailController.text, passwordController.text);
+                      },
+                      child: Text(
+                        "Sign up",
+                        style: kSecondaryButtonText,
                       ),
                     ),
                   ],
@@ -119,7 +105,7 @@ class _Login extends State<Login> {
                 kVerticalSpacer24,
                 Text(
                   'Forgot password?',
-                  style: TextStyle(color: Colors.black45, fontSize: 16.0),
+                  style: kTextButton,
                 ),
               ],
             ),
@@ -137,7 +123,7 @@ class _Login extends State<Login> {
     print('email: ' + email + ' , password:' + password);
     if (users[email] != null && users[email] == password) {
       // with username
-      Navigator.pushNamed(context, '/app', arguments: CalendarApp(title: email),);
+      Navigator.pushNamed(context, '/home', arguments: Home(title: email),);
       print('Authentication successful');
     } else {
       print('Authentication failed');
@@ -147,9 +133,9 @@ class _Login extends State<Login> {
   void signup(String email, String password) {
     if (users[email] == null) {
       users[email] = password;
-      print('Signup successful');
+      print('Sign up successful');
     } else {
-      print('Signup failed');
+      print('Sign up failed');
     }
   }
 }

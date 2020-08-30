@@ -1,7 +1,7 @@
 import 'package:calendar_app/screens/add_event.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar_app/screens/login.dart';
-import 'package:calendar_app/screens/calendar_app.dart';
+import 'package:calendar_app/screens/home.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'constants.dart';
 import 'data.dart';
@@ -31,11 +31,11 @@ class MyApp extends StatelessWidget {
           '/addEvent': (context) => AddEvent(),
         },
         onGenerateRoute: (settings) {
-          if (settings.name == '/app') {
-            final CalendarApp args = settings.arguments;
+          if (settings.name == '/home') {
+            final Home args = settings.arguments;
             return MaterialPageRoute(
               builder: (context) {
-                return CalendarApp(
+                return Home(
                   title: args.title,
                 );
               },
