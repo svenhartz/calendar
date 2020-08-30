@@ -1,3 +1,4 @@
+import 'package:calendar_app/screens/add_calendar.dart';
 import 'package:calendar_app/screens/add_event.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar_app/screens/login.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => Login(),
           '/addEvent': (context) => AddEvent(),
+          '/addCalendar': (context) => AddCalendar(),
         },
         onGenerateRoute: (settings) {
           if (settings.name == '/home') {

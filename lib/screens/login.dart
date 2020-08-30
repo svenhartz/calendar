@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar_app/constants.dart';
+import 'package:provider/provider.dart';
+import 'package:calendar_app/data.dart';
 import 'home.dart';
-
-var users = {
-  'mail@sven.com': '123',
-};
 
 class Login extends StatefulWidget {
   @override
@@ -13,10 +11,10 @@ class Login extends StatefulWidget {
 }
 
 class _Login extends State<Login> {
-  bool authentication = false;
   FocusNode emailFN = new FocusNode();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  String errorMessage = '';
 
   @override
   void dispose() {
@@ -45,6 +43,7 @@ class _Login extends State<Login> {
           Padding(
             padding: const EdgeInsets.all(24.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 TextFormField(
                   controller: emailController,
@@ -65,6 +64,22 @@ class _Login extends State<Login> {
                   obscureText: true,
                 ),
                 kVerticalSpacer24,
+                if(errorMessage != '') Container(
+                  child: Center(
+                    child: Text(
+                      errorMessage ?? '',
+                      style: kErrorMessage,
+                    ),
+                  ),
+                  padding: EdgeInsets.all(16.0),
+                  decoration: new BoxDecoration(
+                    border: Border.all(
+                      color: Colors.red,
+                    ),
+                    borderRadius: new BorderRadius.circular(4.0),
+                  ),
+                ),
+                if(errorMessage != '') kVerticalSpacer16,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   mainAxisSize: MainAxisSize.max,
@@ -103,9 +118,11 @@ class _Login extends State<Login> {
                   ],
                 ),
                 kVerticalSpacer24,
-                Text(
-                  'Forgot password?',
-                  style: kTextButton,
+                Center(
+                  child: Text(
+                    'Forgot password?',
+                    style: kTextButton,
+                  ),
                 ),
               ],
             ),
@@ -116,26 +133,46 @@ class _Login extends State<Login> {
   }
 
   void auth(String email, String password) {
-    // UI error handling
-    // email and password mustn't be null
-    print(users);
-    // db call
     print('email: ' + email + ' , password:' + password);
-    if (users[email] != null && users[email] == password) {
-      // with username
-      Navigator.pushNamed(context, '/home', arguments: Home(title: email),);
-      print('Authentication successful');
+
+    if (Provider.of<Data>(context, listen: false).auth(email, password)) {
+      Provider.of<Data>(context, listen: false).setEmail(email);
+      if(Provider.of<Data>(context, listen: false).firstLogin){
+        Navigator.pushNamed(
+          context,
+          '/addCalendar',
+
+        );
+        Provider.of<Data>(context, listen: false).firstLogin = false;
+      }else{
+        Navigator.pushNamed(
+          context,
+          '/home',
+          arguments: Home(
+              title:
+              Provider.of<Data>(context, listen: false).email),
+        );
+      }
     } else {
-      print('Authentication failed');
+      showErrorMessage('Authentication failed');
     }
   }
 
   void signup(String email, String password) {
-    if (users[email] == null) {
-      users[email] = password;
-      print('Sign up successful');
-    } else {
-      print('Sign up failed');
+    if(email == '' || password == ''){
+      showErrorMessage('Email and password is required!');
+      return;
     }
+
+    if (Provider.of<Data>(context, listen: false).signup(email, password)) {
+    } else {
+      showErrorMessage('Sign up failed');
+    }
+  }
+
+  void showErrorMessage(String message) {
+    setState(() {
+      errorMessage = message;
+    });
   }
 }

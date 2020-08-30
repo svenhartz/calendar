@@ -16,6 +16,7 @@ class _AddEvent extends State<AddEvent> {
   final startTimeController = TextEditingController();
   final endTimeController = TextEditingController();
   DateTime date;
+  DateTime today = DateTime.now();
   String eventName, startTime, endTime;
 
   @override
@@ -28,7 +29,6 @@ class _AddEvent extends State<AddEvent> {
     super.dispose();
   }
 
-  DateTime today = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

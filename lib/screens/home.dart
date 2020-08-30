@@ -122,6 +122,13 @@ class _Home extends State<Home> with TickerProviderStateMixin {
           ),
         ),
         Container(
+          padding: EdgeInsets.only(left: 16.0, top: 16.0),
+          child: Text(
+            'Your calendars',
+            style: kH2Drawer,
+          ),
+        ),
+        Container(
           padding: EdgeInsets.all(16.0),
           child: Text(
             widget.title,
@@ -129,6 +136,18 @@ class _Home extends State<Home> with TickerProviderStateMixin {
           ),
         ),
         Spacer(),
+        Row(
+          children: [
+            FlatButton.icon(
+              padding: EdgeInsets.all(14.0),
+              onPressed: () {
+                //Navigator.popAndPushNamed(context, '/');
+              },
+              icon: Icon(Icons.calendar_today),
+              label: Text("Manage calendars"),
+            ),
+          ],
+        ),
         Row(
           children: [
           FlatButton.icon(

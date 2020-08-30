@@ -23,6 +23,18 @@ const kHeadlineDrawer = TextStyle(
   fontSize: 20.0,
 );
 
+const kH2Drawer = TextStyle(
+  color: Colors.black,
+  fontWeight: FontWeight.w300,
+  fontSize: 20.0,
+);
+
+const kH1 = TextStyle(
+  color: Colors.black,
+  fontWeight: FontWeight.w300,
+  fontSize: 24.0,
+);
+
 const kPrimaryButtonText = TextStyle(
   color: Colors.white,
   fontFamily: 'Montserrat',
@@ -38,6 +50,11 @@ const kSecondaryButtonText = TextStyle(
 const kTextButton = TextStyle(
   color: Colors.black45,
   fontSize: 16.0,
+);
+
+const kErrorMessage = TextStyle(
+  color: Colors.red,
+  fontWeight: FontWeight.w600,
 );
 
 //calendar styles
