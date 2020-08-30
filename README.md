@@ -7,21 +7,19 @@ A simple calendar app
 There are several ways how to build this project. 
 
 1. Install Flutter and Dart. 
-Read https://flutter.dev/docs/get-started/install to get started for your operating system
+   - Read https://flutter.dev/docs/get-started/install to get started for your operating system
 
 2. Set up an editor
-Read https://flutter.dev/docs/get-started/editor to get started
+   - Read https://flutter.dev/docs/get-started/editor to get started
 
 The recommended way to build this project is via Android Studio
 1. Download Android Studio: https://developer.android.com/studio
-2. Install the Flutter and Dart plugins
-   To install these:
-   
-   2.1 Start Android Studio.
-   2.2 Open plugin preferences (Configure > Plugins as of v3.6.3.0 or later).
-   2.3 Select the Flutter plugin and click Install.
-   2.4 Click Yes when prompted to install the Dart plugin.
-   2.5 Click Restart when prompted.
+2. Install the Flutter and Dart plugins. To install these:
+   1. Start Android Studio.
+   2. Open plugin preferences (Configure > Plugins as of v3.6.3.0 or later).
+   3. Select the Flutter plugin and click Install.
+   4. Click Yes when prompted to install the Dart plugin.
+   5. Click Restart when prompted.
 
 3. Start Android Studio and choose 'Project from version control' 
 4. Paste github url into URL: https://github.com/svenhartz/calendar.git and click 'clone'
