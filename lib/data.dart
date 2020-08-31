@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class Data extends ChangeNotifier {
   String email;
+  String calendar = '';
   bool firstLogin = true;
   Map <String,String> users = {
     'mail@sven.com': '123',
@@ -10,10 +11,8 @@ class Data extends ChangeNotifier {
 
 
   Map<DateTime, List> events = {
-    DateTime.now().subtract(Duration(days: 30)): [
+    DateTime.now().subtract(Duration(days: 300)): [
       'Event A0',
-      'Event B0',
-      'Event C0'
     ],
   };
 

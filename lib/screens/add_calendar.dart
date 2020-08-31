@@ -12,6 +12,7 @@ class AddCalendar extends StatefulWidget {
 }
 
 class _AddCalendar extends State<AddCalendar> {
+  String errorMessage = '';
   final calendarNameController = TextEditingController();
   final shareController = TextEditingController();
 
@@ -31,7 +32,10 @@ class _AddCalendar extends State<AddCalendar> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            padding: EdgeInsets.only(top: 40.0, bottom: 32.0,),
+            padding: EdgeInsets.only(
+              top: 40.0,
+              bottom: 32.0,
+            ),
             color: Colors.black87,
             child: Center(
               child: Text(
@@ -60,13 +64,30 @@ class _AddCalendar extends State<AddCalendar> {
                     labelText: 'Calendar name',
                   ),
                 ),
-                kVerticalSpacer24,
+                kVerticalSpacer16,
+                if(errorMessage != '') Container(
+                  child: Center(
+                    child: Text(
+                      errorMessage ?? '',
+                      style: kErrorMessage,
+                    ),
+                  ),
+                  padding: EdgeInsets.all(16.0),
+                  decoration: new BoxDecoration(
+                    border: Border.all(
+                      color: Colors.red,
+                    ),
+                    borderRadius: new BorderRadius.circular(4.0),
+                  ),
+                ),
+                if(errorMessage != '') kVerticalSpacer24,
 
                 TextFormField(
                   controller: shareController,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                     icon: Icon(Icons.supervisor_account),
-                    labelText: 'Share calendar with email',
+                    labelText: 'Share with user@mail.com, user2.mail.com...',
                   ),
                 ),
                 kVerticalSpacer24,
@@ -93,13 +114,20 @@ class _AddCalendar extends State<AddCalendar> {
                   padding: EdgeInsets.all(14.0),
                   color: Colors.black,
                   onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/home',
-                      arguments: Home(
-                          title:
-                              Provider.of<Data>(context, listen: false).email),
-                    );
+                    if(calendarNameController.text != ''){
+                      Provider.of<Data>(context, listen: false).calendar =
+                          calendarNameController.text;
+                      Navigator.pushNamed(
+                        context,
+                        '/home',
+                        arguments: Home(
+                            title:
+                            Provider.of<Data>(context, listen: false).email),
+                      );
+                    } else{
+                      showErrorMessage('Your calendar needs a name :)');
+                    }
+
                   },
                   icon: Icon(
                     Icons.add,
@@ -118,5 +146,10 @@ class _AddCalendar extends State<AddCalendar> {
         ],
       ),
     );
+  }
+  void showErrorMessage(String message) {
+    setState(() {
+      errorMessage = message;
+    });
   }
 }

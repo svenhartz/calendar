@@ -131,7 +131,7 @@ class _Home extends State<Home> with TickerProviderStateMixin {
         Container(
           padding: EdgeInsets.all(16.0),
           child: Text(
-            widget.title,
+            Provider.of<Data>(context, listen: false).calendar,
             style: TextStyle(fontWeight: FontWeight.w500),
           ),
         ),
@@ -141,7 +141,7 @@ class _Home extends State<Home> with TickerProviderStateMixin {
             FlatButton.icon(
               padding: EdgeInsets.all(14.0),
               onPressed: () {
-                //Navigator.popAndPushNamed(context, '/');
+                //navigate to manage calendars page
               },
               icon: Icon(Icons.calendar_today),
               label: Text("Manage calendars"),
